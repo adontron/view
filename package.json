@@ -1,0 +1,93 @@
+{
+  "name": "@adontron/view",
+  "version": "0.0.1",
+  "description": "View import and View context injection",
+  "main": "build/providers/ViewProvider.js",
+  "files": [
+    "build/contracts",
+    "build/providers",
+    "build/src"
+  ],
+  "typings": "./build/contracts/view.d.ts",
+  "scripts": {
+    "lint": "eslint . --ext=.ts",
+    "clean": "del-cli build",
+    "build": "npm run lint && npm run clean && tsc",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adontron/view.git"
+  },
+  "keywords": [
+    "view",
+    "adonisjs",
+    "context",
+    "import",
+    "inject"
+  ],
+  "author": "mikesaintsg",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/adontron/view/issues"
+  },
+  "homepage": "https://github.com/adontron/view#readme",
+  "devDependencies": {
+    "@adonisjs/core": "^5.9.0",
+    "@adonisjs/mrm-preset": "^5.0.3",
+    "@adonisjs/repl": "^3.1.11",
+    "@types/node": "^18.11.9",
+    "del-cli": "^5.0.0",
+    "eslint": "^8.28.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-adonis": "^2.1.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.8.0",
+    "typescript": "^4.8.2"
+  },
+  "peerDependencies": {
+    "@adonisjs/core": "^5.7.0"
+  },
+  "adonisjs": {
+    "types": "@adontron/view",
+    "providers": [
+      "@adontron/view"
+    ],
+    "metaFiles": [
+      {
+        "pattern": "resources/views/**/*.ts",
+        "reloadServer": false
+      }
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptPackage",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error",
+        {
+          "endOfLine": "auto"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  }
+}
