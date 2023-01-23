@@ -1,6 +1,6 @@
 {
   "name": "@adontron/view",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "View import and View context injection",
   "main": "build/providers/ViewProvider.js",
   "files": [
@@ -13,7 +13,8 @@
     "lint": "eslint . --ext=.ts",
     "clean": "del-cli build",
     "build": "npm run lint && npm run clean && tsc",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
