@@ -1,6 +1,6 @@
 {
   "name": "@adontron/view",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "View import and View context injection",
   "main": "build/providers/ViewProvider.js",
   "files": [

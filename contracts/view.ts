@@ -1,24 +1,24 @@
 declare module '@ioc:Adonis/Core/Application' {
-  import { ViewContextConstructorContract } from '@ioc:ViewContext'
+  import { ViewContextConstructorContract } from '@ioc:Adontron/ViewContext'
 
   interface ContainerBindings {
-    ViewContext: ViewContextConstructorContract
+    'Adontron/ViewContext': ViewContextConstructorContract
   }
 }
 
 declare module '@ioc:Adonis/Core/HttpContext' {
   interface HttpContextContract {
-    view: (viewPath: string, ...data) => string
+    view: (viewPath: string, data?: any) => string
   }
 }
 
 declare module '@ioc:Adonis/Core/Route' {
   interface BriskRouteContract {
-    render: (viewPath: string, ...data) => Exclude<this['route'], null>
+    render: (viewPath: string, data?: any) => Exclude<this['route'], null>
   }
 }
 
-declare module '@ioc:ViewContext' {
+declare module '@ioc:Adontron/ViewContext' {
   import { ApplicationContract } from '@ioc:Adonis/Core/Application'
   import { RequestContract } from '@ioc:Adonis/Core/Request'
   import { ConfigContract } from '@ioc:Adonis/Core/Config'

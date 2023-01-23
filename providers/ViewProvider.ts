@@ -3,7 +3,7 @@ import type {
   HttpContextConstructorContract,
   HttpContextContract,
 } from '@ioc:Adonis/Core/HttpContext'
-import type { ViewContextConstructorContract } from '@ioc:ViewContext'
+import type { ViewContextConstructorContract } from '@ioc:Adontron/ViewContext'
 import type { RouterContract } from '@ioc:Adonis/Core/Route'
 
 export default class ViewProvider {
@@ -18,7 +18,7 @@ export default class ViewProvider {
     HttpContext.getter(
       'view',
       function () {
-        return (viewPath: string, ...data) =>
+        return (viewPath: string, data?: any) =>
           require(templatePath(viewPath)).default(ViewContext.create(this.request, data))
       },
       true
@@ -26,15 +26,15 @@ export default class ViewProvider {
   }
 
   private registerBriskRoute(Route: RouterContract) {
-    Route.BriskRoute.macro('render', function renderView(viewPath: string, ...data) {
+    Route.BriskRoute.macro('render', function renderView(viewPath: string, data?: any) {
       return this.setHandler(({ view }: { view: HttpContextContract['view'] }) => {
-        return view(viewPath, ...data)
+        return view(viewPath, data)
       }, 'render')
     })
   }
 
   public register() {
-    this.app.container.bind('ViewContext', () => {
+    this.app.container.bind('Adontron/ViewContext', () => {
       const { ViewContext } = require('../src/ViewContext')
       ViewContext.app = this.app
       return ViewContext
@@ -43,7 +43,7 @@ export default class ViewProvider {
 
   public async boot() {
     const HttpContext = this.app.container.resolveBinding('Adonis/Core/HttpContext')
-    const ViewContext = this.app.container.resolveBinding('ViewContext')
+    const ViewContext = this.app.container.resolveBinding('Adontron/ViewContext')
     const Route = this.app.container.resolveBinding('Adonis/Core/Route')
 
     this.registerView(HttpContext, ViewContext)
